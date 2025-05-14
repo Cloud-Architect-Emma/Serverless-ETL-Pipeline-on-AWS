@@ -6,19 +6,23 @@
 
 ## Project Architecture — 1. User uploads raw feedback data to S3. 2. S3 triggers Lambda on `ObjectCreated` event. 3. Lambda function reads the file, transforms data, and pushes structured results to DynamoDB. 4. If transformation fails or anomalies are detected, Lambda publishes a message to an SNS topic. 5. CloudWatch records logs and custom metrics for monitoring and alerting.
 
-## ![Architecture](ETL%20architecture.jpg)
+## Architecture Overview
+
+![ETL Architecture](Architecture/ETL%20architecture.jpg)
+
 
 
 ## AWS Architecture Diagram — ┌────────────┐        ┌────────────┐        ┌────────────┐ │  S3 Bucket │──────▶│   Lambda    │──────▶│  DynamoDB   │ └────────────┘        └────┬───────┘        └────┬───────┘                         │                    │                         ▼                    ▼                ┌────────────┐        ┌──────────────┐                │ CloudWatch │        │     SNS      │                └────────────┘        └──────────────┘
 
 ## Project Snapshots
 
-| Component         | Screenshot                                                  |
-|------------------|--------------------------------------------------------------|
-| SNS Notification  | <img src="SNS_notification.JPG" width="100"/>               |
-| DynamoDB Table    | <img src="DynamoDB.JPG" width="100"/>                        |
-| S3 Bucket         | <img src="S3%20bucket.JPG" width="100"/>                     |
-| Lambda Function   | <img src="Lambda%20function.JPG" width="100"/>                          |
+| Component         | Screenshot                                                                 |
+|------------------|----------------------------------------------------------------------------|
+| SNS Notification | <img src="Project Snapshots/SNS notification.JPG" width="100"/>            |
+| DynamoDB Table   | <img src="Project Snapshots/DynamoDB.JPG" width="100"/>                    |
+| S3 Bucket        | <img src="Project Snapshots/S3 bucket.JPG" width="100"/>                   |
+| Lambda Function  | <img src="Project Snapshots/Lambda function.JPG" width="100"/>             |
+        |
              
 
 ## 🔐 IAM Role Permissions — Lambda assumes the IAM role `etl-raw-data-processor` with the following minimum permissions: ```json { "Version": "2012-10-17", "Statement": [ { "Effect": "Allow", "Action": [ "dynamodb:PutItem", "s3:GetObject", "cloudwatch:PutMetricData", "sns:Publish" ], "Resource": "*" } ] } ``` 🔒 Replace `"*"` with scoped ARNs in production environments to apply least-privilege security practices.
