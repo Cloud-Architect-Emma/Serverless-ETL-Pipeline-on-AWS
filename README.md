@@ -6,7 +6,8 @@
 
 ## Project Architecture — 1. User uploads raw feedback data to S3. 2. S3 triggers Lambda on `ObjectCreated` event. 3. Lambda function reads the file, transforms data, and pushes structured results to DynamoDB. 4. If transformation fails or anomalies are detected, Lambda publishes a message to an SNS topic. 5. CloudWatch records logs and custom metrics for monitoring and alerting.
 
-## ![Architecture](ETL%20architecture.JPG)
+## ![Architecture](ETL%20architecture.jpg)
+
 
 ## AWS Architecture Diagram — ┌────────────┐        ┌────────────┐        ┌────────────┐ │  S3 Bucket │──────▶│   Lambda    │──────▶│  DynamoDB   │ └────────────┘        └────┬───────┘        └────┬───────┘                         │                    │                         ▼                    ▼                ┌────────────┐        ┌──────────────┐                │ CloudWatch │        │     SNS      │                └────────────┘        └──────────────┘
 
