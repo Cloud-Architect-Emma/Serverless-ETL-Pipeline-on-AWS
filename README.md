@@ -1,4 +1,4 @@
-# Serverless ETL Pipeline on AWS — A production-grade, event-driven serverless ETL (Extract, Transform, Load) pipeline built using AWS managed services. It ingests raw customer feedback data from Amazon S3, transforms it via AWS Lambda, stores cleaned records in DynamoDB, and integrates with SNS and CloudWatch for alerting and observability.
+## Serverless ETL Pipeline on AWS — A production-grade, event-driven serverless ETL (Extract, Transform, Load) pipeline built using AWS managed services. It ingests raw customer feedback data from Amazon S3, transforms it via AWS Lambda, stores cleaned records in DynamoDB, and integrates with SNS and CloudWatch for alerting and observability.
 
 ## Solution Overview 
 
