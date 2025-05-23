@@ -20,7 +20,7 @@ This solution demonstrates a decoupled, scalable, and secure real-time pipeline 
 
 ## AWS Architecture Diagram 
 
-┌────────────┐        ┌────────────┐        ┌────────────┐ │  S3 Bucket │──────▶│   Lambda    │──────▶│  DynamoDB   │ └────────────┘        └────┬───────┘        └────┬───────┘                         │                    │                         ▼                    ▼                ┌────────────┐        ┌──────────────┐                │ CloudWatch │        │     SNS      │                └────────────┘        └──────────────┘
+┌────────────┐        ┌────────────┐        ┌────────────┐ │  S3 Bucket │──────▶│   Lambda    │──────▶│  DynamoDB   │ └────────────┘        └────┬───────┘        └────┬───────┘                         │                                            ▼                    ▼                ┌────────────┐        ┌──────────────┐                │ CloudWatch │        │     SNS      │                └────────────┘        └──────────────┘
 
 ## Project Snapshots
 
@@ -30,9 +30,8 @@ This solution demonstrates a decoupled, scalable, and secure real-time pipeline 
 | DynamoDB Table   | <img src="Project Snapshots/DynamoDB.JPG" width="100"/>                    |
 | S3 Bucket        | <img src="Project Snapshots/S3 bucket.JPG" width="100"/>                   |
 | Lambda Function  | <img src="Project Snapshots/Lambda function.JPG" width="100"/>             |
-        |
-             
 
+             
 ## IAM Role Permissions 
 
 Lambda assumes the IAM role `etl-raw-data-processor` with the following minimum permissions: ```json { "Version": "2012-10-17", "Statement": [ { "Effect": "Allow", "Action": [ "dynamodb:PutItem", "s3:GetObject", "cloudwatch:PutMetricData", "sns:Publish" ], "Resource": "*" } ] } ``` Replace `"*"` with scoped ARNs in production environments to apply least-privilege security practices.
